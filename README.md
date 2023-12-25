@@ -1,0 +1,2 @@
+# vite-mfe
+ Vite Microfrontends
