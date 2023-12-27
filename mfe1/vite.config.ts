@@ -9,9 +9,10 @@ export default defineConfig({
       name: "mfe1",
       filename: "remoteEntry.js",
       exposes: {
-        "./CounterButton": "./src/components/CounterButton.tsx",
+        "./CounterButton": "./src/AppRoot/components/CounterButton.tsx",
+        "./AppRoot": "./src/AppRoot/index.tsx",
       },
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom", "react-router-dom"],
     }),
   ],
   server: {

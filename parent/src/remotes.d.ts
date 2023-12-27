@@ -6,3 +6,9 @@ declare module "mfe1/CounterButton" {
   const CounterButton: ComponentType<Props>;
   export default CounterButton;
 }
+
+declare module "mfe1/AppRoot" {
+  import { ComponentType } from "react";
+  const AppRoot: ComponentType;
+  export default AppRoot;
+}

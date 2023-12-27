@@ -10,7 +10,7 @@ export default defineConfig({
       remotes: {
         mfe1: "http://localhost:5001/assets/remoteEntry.js",
       },
-      shared: ["react", "react-dom"],
+      shared: ["react", "react-dom", "react-router-dom"],
     }),
   ],
   server: {
