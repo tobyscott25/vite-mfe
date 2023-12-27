@@ -4,7 +4,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 
 // Error Boundary only works with dynamically loaded components
-const CounterButton = React.lazy(() => import("mfe1/Button"));
+const CounterButton = React.lazy(() => import("mfe1/CounterButton"));
 
 function App() {
   return (

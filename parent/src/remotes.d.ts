@@ -1,1 +1,1 @@
-declare module "mfe1/Button";
+declare module "mfe1/CounterButton";

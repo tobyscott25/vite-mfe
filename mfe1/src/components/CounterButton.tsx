@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 
-export const CountrerButton: FunctionComponent = (): JSX.Element => {
+export const CounterButton: FunctionComponent = (): JSX.Element => {
   const [state, setState] = useState(0);
   return (
     <div>
@@ -11,4 +11,4 @@ export const CountrerButton: FunctionComponent = (): JSX.Element => {
   );
 };
 
-export default CountrerButton;
+export default CounterButton;
