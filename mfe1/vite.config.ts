@@ -9,13 +9,13 @@ export default defineConfig({
       name: "mfe1",
       filename: "remoteEntry.js",
       exposes: {
-        "./Button": "./src/components/Button.tsx",
+        "./CounterButton": "./src/components/CounterButton.tsx",
       },
       shared: ["react", "react-dom"],
     }),
   ],
   server: {
-    port: 5001,
+    port: 5501,
     strictPort: true,
     open: true, // Open in browser when being developed independently
   },

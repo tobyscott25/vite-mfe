@@ -1,6 +1,10 @@
-import Button from "mfe1/Button";
+import React from "react";
+import ErrorBoundary from "./components/ErrorBoundary";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
+
+// Error Boundary only works with dynamically loaded components
+const CounterButton = React.lazy(() => import("mfe1/Button"));
 
 function App() {
   return (
@@ -10,7 +14,9 @@ function App() {
         <img src={reactLogo} className="logo react" alt="React logo" />
       </div>
       <h1>Parent app</h1>
-      <Button />
+      <ErrorBoundary>
+        <CounterButton />
+      </ErrorBoundary>
     </div>
   );
 }

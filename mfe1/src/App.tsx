@@ -1,10 +1,11 @@
-import Button from "./components/Button";
+import CounterButton from "./components/CounterButton";
 
 function App() {
   return (
     <div>
       <h1>Child app</h1>
-      <Button />
+      <p>PotterDB API URL: {import.meta.env.VITE_POTTERDB_API_URL}</p>
+      <CounterButton />
     </div>
   );
 }
