@@ -1,7 +1,11 @@
 import { Button, ChakraProvider } from "@chakra-ui/react";
 import { FunctionComponent, useState } from "react";
 
-export const CounterButton: FunctionComponent = (): JSX.Element => {
+interface Props {
+  label?: string;
+}
+
+export const CounterButton: FunctionComponent<Props> = (props): JSX.Element => {
   const [state, setState] = useState(0);
   return (
     <ChakraProvider>
@@ -10,7 +14,7 @@ export const CounterButton: FunctionComponent = (): JSX.Element => {
         variant={"outline"}
         onClick={() => setState((s) => s + 1)}
       >
-        Counter button: {state}
+        {props.label ?? "Counter button: "} {state}
       </Button>
     </ChakraProvider>
   );

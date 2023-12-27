@@ -17,7 +17,7 @@ function App() {
       </Flex>
       <Text fontSize={"2xl"}>Parent app</Text>
       <ErrorBoundary>
-        <CounterButton />
+        <CounterButton label={"Hello MFE"} />
       </ErrorBoundary>
     </Box>
   );
