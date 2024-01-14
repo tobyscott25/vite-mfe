@@ -3,8 +3,7 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 
 const DefaultErrorFallback: FunctionComponent = (): JSX.Element => {
   return (
-    <Flex justifyContent={"space-between"}>
-      <Box></Box>
+    <Flex justifyContent={"space-around"}>
       <Box
         display={"inline-block"}
         alignItems={"center"}
@@ -25,7 +24,6 @@ const DefaultErrorFallback: FunctionComponent = (): JSX.Element => {
           A rendering error has been caught by the error boundary.
         </Text>
       </Box>
-      <Box></Box>
     </Flex>
   );
 };

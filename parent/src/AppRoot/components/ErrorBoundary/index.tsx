@@ -2,8 +2,11 @@ import { ReactNode, Component, ErrorInfo } from "react";
 import DefaultErrorFallback from "./DefaultFallback";
 
 interface ErrorBoundaryProps {
-  fallback?: ReactNode; // if you want to customise the fallback UI
   children: ReactNode;
+  /**
+   * Custom fallback UI to display when an error occurs.
+   */
+  fallback?: ReactNode;
 }
 
 interface ErrorBoundaryState {
