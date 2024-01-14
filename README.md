@@ -51,4 +51,4 @@ npm run dev
 
 Visit: http://localhost:5501/
 
-The `remoteEntry.js` file is not available in this mode because Vite's dev mode is "bundle-less".
+The `remoteEntry.js` file is not available in this mode because Vite's dev mode is "bundle-less". [More info here](https://github.com/originjs/vite-plugin-federation?tab=readme-ov-file#vite-dev-mode)
