@@ -1,0 +1,76 @@
+# GitHub workflow to build the static React app
+
+name: Build and deploy MFE1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - mfe1**
+      - .github/workflows/mfe1.yaml
+
+jobs:
+  get-short-sha:
+    name: Get short SHA
+    runs-on: ubuntu-22.04
+
+    outputs:
+      short-sha: ${{ steps.short-sha.outputs.short-sha }}
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Get short SHA
+        id: short-sha
+        run: |
+          echo "short-sha=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
+  build-and-deploy:
+    name: Build and deploy
+    needs: get-short-sha
+    runs-on: ubuntu-22.04
+
+    env:
+      AWS_REGION: us-east-1
+      BUILD_VERSION: ${{ github.ref_name }}-${{ needs.get-short-sha.outputs.short-sha }}
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: mfe1
+        run: npm install
+
+      # - name: Run unit tests
+      #   working-directory: mfe1
+      #   run: npm test
+
+      - name: Build site artifacts
+        working-directory: mfe1
+        run: npm run build # Builds into folder named "dist"
+
+      - name: Add build specifier to site artifacts
+        run: echo "${{ env.BUILD_VERSION }}" >> mfe1/dist/build.txt
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Upload site artifacts to S3
+        run: aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME_MFE1 }}/ --delete
+        working-directory: mfe1/dist
+
+      - name: Invalidate CloudFront distribution cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_MFE1 }} --paths "/*"
