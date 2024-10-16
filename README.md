@@ -16,9 +16,30 @@ Features in this demo:
 Features to add:
 
 - Support for multiple [environments](https://vitejs.dev/guide/env-and-mode) (development and production)
-- Live demo
 
-## Getting started
+## Note on CORS
+
+In the live demo, the parent app is available at https://vite-mfe-demo.tobyscott.dev and the micro-frontend is available at https://vite-mfe-demo-mfe1.tobyscott.dev. These are different origins, so when the parent's origin tries to fetch the microfrontend resources from the child's origin, we get a CORS error unless we explicitly allow the parent's origin to fetch resources from the child's origin by sending back an `Access-Control-Allow-Origin` header from the child's origin.
+
+The live demo is served from S3 + Cloudfront, so I have configured the S3 bucket with the following CORS configuration:
+
+```json
+[
+  {
+    "AllowedHeaders": ["*"],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedOrigins": ["https://vite-mfe-demo.tobyscott.dev"],
+    "ExposeHeaders": [],
+    "MaxAgeSeconds": 3000
+  }
+]
+```
+
+and configured the CloudFront distribution default cache policy with the following:
+
+- Allowed HTTP methods: GET, HEAD, OPTIONS (with options being cached as well as GET and HEAD)
+
+## Running locally
 
 ### Pre-requisites
 
@@ -27,7 +48,7 @@ Features to add:
 cd parent && npm install && cd ../mfe1 && npm install
 ```
 
-### Running the parent and micro-frontend locally
+### Running the parent and micro-frontend
 
 ```sh
 # Serve the micro-frontend at http://localhost:5001/

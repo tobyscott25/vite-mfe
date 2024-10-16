@@ -1,0 +1,39 @@
+Behaviors:
+  - PathPattern: "/*"
+    AllowedMethods:
+      - GET
+      - HEAD
+      - OPTIONS
+    CachedMethods:
+      - GET
+      - HEAD
+      - OPTIONS
+    ForwardedValues:
+      QueryString: false
+      Cookies:
+        Forward: none
+    ViewerProtocolPolicy: redirect-to-https
+    MinTTL: 0
+    DefaultTTL: 86400
+    MaxTTL: 31536000
+    LambdaFunctionAssociations: []
+    TrustedSigners:
+      Enabled: false
+      Quantity: 0
+    SmoothStreaming: false
+    DefaultRootObject: ""
+    AllowedOrigins:
+      - example.com
+    CustomHeaders:
+      Quantity: 1
+      Items:
+        - HeaderName: "Access-Control-Allow-Origin"
+          HeaderValue: "*"
+    PriceClass: PriceClass_All
+    ViewerCertificate:
+      ACMCertificateArn: ""
+      SSLSupportMethod: sni-only
+      MinimumProtocolVersion: TLSv1.2_2019
+    Restrictions:
+      GeoRestriction:
+        RestrictionType: none
