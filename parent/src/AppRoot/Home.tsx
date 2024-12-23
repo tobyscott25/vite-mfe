@@ -1,6 +1,11 @@
 import { FunctionComponent, ReactElement } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 export const Home: FunctionComponent = (): ReactElement => {
-  return <Box>Visit /mfe1/*</Box>;
+  return (
+    <Box>
+      <Text fontSize={"lg"}>Parent app!</Text>
+      <Text>Visit /mfe1/*</Text>
+    </Box>
+  );
 };

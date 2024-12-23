@@ -24,14 +24,16 @@ Features to add:
 
 ```sh
 # Install dependencies in both apps
-cd parent && npm install && cd ../mfe1 && npm install
+cd parent && npm install && cd ../mfe1 && npm install && cd ../mfe2 && npm install
 ```
 
 ### Running the parent and micro-frontend locally
 
 ```sh
-# Serve the micro-frontend at http://localhost:5001/
+# Serve the micro-frontends at http://localhost:5001 and http://localhost:5002
 cd mfe1
+npm run mfe-preview
+cd ../mfe2
 npm run mfe-preview
 
 # Run the parent app at http://localhost:5000/
@@ -41,7 +43,7 @@ npm run dev
 
 Visit: http://localhost:5000/ and http://localhost:5001/assets/remoteEntry.js
 
-### Running the micro-frontend in an isolated dev playground
+### Running micro-frontends in an isolated dev playground
 
 ```sh
 # Run the micro-frontend playground at http://localhost:5501/
